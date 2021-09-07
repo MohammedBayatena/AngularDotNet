@@ -12,7 +12,10 @@ Run the sln file using any C# IDE. BackEnd Server runs at port http:5000 and Swa
 
 ## Implemented Features
 
-* Fully Authinticated With JWT Tokens in back end and Route Guards in Front End
+* Fully Authinticated With JWT Tokens in back end and Route Guards in Front End.
+* Implementing Angular Entity Model 
+* Implementing Angular NGRX State Methods
+* Implementing RxJS Http Requests
 
 ## Further help
 
