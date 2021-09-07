@@ -30,6 +30,7 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 .vs/*
+.bin/*
 
 # misc
 /.sass-cache
