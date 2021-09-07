@@ -24,9 +24,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Technologies Used
 
-<img width="256" alt="Rx_Logo-512-512" src="https://user-images.githubusercontent.com/75543501/132356934-8796b1bb-def5-496a-b5b4-8a5ec23602a2.png">
+<img width="40" alt="1" src="https://user-images.githubusercontent.com/75543501/132356934-8796b1bb-def5-496a-b5b4-8a5ec23602a2.png">
+<img width="40" alt="2" src="https://user-images.githubusercontent.com/75543501/132356943-f449805b-1762-4aa6-bf17-44bbcb5a993a.png">
+<img width="40" alt="3" src="https://user-images.githubusercontent.com/75543501/132356948-76465e4a-35d3-4838-adb0-f5f8bbeee181.png">
 
-![Image](https://user-images.githubusercontent.com/75543501/132356934-8796b1bb-def5-496a-b5b4-8a5ec23602a2.png)
-![Angular_full_color_logo svg](https://user-images.githubusercontent.com/75543501/132356943-f449805b-1762-4aa6-bf17-44bbcb5a993a.png)
-![NET_Core_Logo svg](https://user-images.githubusercontent.com/75543501/132356948-76465e4a-35d3-4838-adb0-f5f8bbeee181.png)
+![Image]()
+![Angular_full_color_logo svg]()
+![NET_Core_Logo svg]()
 
