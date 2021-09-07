@@ -1,0 +1,215 @@
+<h4 class="text-center">{{ title }}</h4>
+<div *ngIf="character$ | async as character"></div>
+<form
+  class="mx-1 mx-md-4"
+  validate
+  *ngIf="isnewForm || (character$ | async)"
+  (submit)="onSubmit(formData)"
+  #formData="ngForm"
+>
+  <div class="container">
+    <div class="row m-2">
+      <div class="col form-floating px-1">
+        <input
+          [ngClass]="{
+            'is-valid': charactername.valid && charactername.dirty,
+            'is-invalid': !charactername.valid && charactername.dirty
+          }"
+          class="form-control"
+          type="text"
+          id="charactername"
+          name="charactername"
+          ngModel="{{ isnewForm ? '' : character.name }}"
+          minlength="3"
+          maxlength="15"
+          #charactername="ngModel"
+          required
+          placeholder="Character Name"
+        />
+        <label for="charactername">Character Name</label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">
+          <div *ngIf="charactername.errors?.required">Name is required.</div>
+          <div *ngIf="charactername.errors?.minlength">
+            Name must be at least 3 characters long.
+          </div>
+          <div *ngIf="charactername.errors?.maxlength">
+            Character Name cant be more than 15 characters!.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-2">
+      <div class="col form-floating px-1">
+        <input
+          class="form-control"
+          [ngClass]="{
+            'is-valid': hitpoints.valid && hitpoints.dirty,
+            'is-invalid': !hitpoints.valid && hitpoints.dirty
+          }"
+          type="number"
+          id="characterhitpoints"
+          name="characterhitpoints"
+          ngModel="{{ isnewForm ? '' : character.hitPoints }}"
+          min="1"
+          max="1000"
+          #hitpoints="ngModel"
+          required
+          placeholder="Hitpoints"
+        />
+        <label for="characterhitpoints">HitPoints</label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">
+          <div *ngIf="hitpoints.errors?.required">Field is required.</div>
+          <div *ngIf="hitpoints.errors?.min">
+            Hitpoints should be atleast 1 point.
+          </div>
+          <div *ngIf="hitpoints.errors?.max">
+            Hitpoints should be no more than 1000 points.
+          </div>
+        </div>
+      </div>
+
+      <div class="col form-floating px-1">
+        <input
+          class="form-control"
+          [ngClass]="{
+            'is-valid': strength.valid && strength.dirty,
+            'is-invalid': !strength.valid && strength.dirty
+          }"
+          type="number"
+          id="characterstrength"
+          name="characterstrength"
+          ngModel="{{ isnewForm ? '' : character.strength }}"
+          min="1"
+          max="100"
+          #strength="ngModel"
+          required
+          placeholder="Strength"
+        />
+        <label for="characterstrength">Character Strength</label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">
+          <div *ngIf="strength.errors?.required">Field is required.</div>
+          <div *ngIf="strength.errors?.min">
+            Stringth should be atleast 1 point.
+          </div>
+          <div *ngIf="strength.errors?.max">
+            Stringth should be no more than 100 points.
+          </div>
+        </div>
+      </div>
+
+      <div class="col form-floating px-1">
+        <input
+          class="form-control"
+          [ngClass]="{
+            'is-valid': defence.valid && defence.dirty,
+            'is-invalid': !defence.valid && defence.dirty
+          }"
+          type="number"
+          id="characterdefence"
+          name="characterdefence"
+          ngModel="{{ isnewForm ? '' : character.defence }}"
+          min="1"
+          max="100"
+          #defence="ngModel"
+          required
+          placeholder="defence"
+        />
+        <label for="characterdefence">Character Defence</label>
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">
+          <div *ngIf="defence.errors?.required">Field is required.</div>
+          <div *ngIf="defence.errors?.min">
+            Defence should be at least 1 point.
+          </div>
+          <div *ngIf="defence.errors?.max">
+            Defence should be no more than 100 points.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col form-floating px-1">
+        <select
+          class="form-select"
+          name="type"
+          id="typeSelect"
+          required
+          ngModel="{{ isnewForm ? '' : character.type }}"
+          #type
+          [ngClass]="{
+            'is-valid': formData.valid && !formData.errors?.type,
+            'is-invalid':
+              !formData.valid && !formData.errors?.type && formData.dirty
+          }"
+        >
+          <option [defaultSelected] value="">Select a Type</option>
+          <option value="Wizard">Wizard</option>
+          <option value="Healer">Healer</option>
+          <option value="Knight">Knight</option>
+        </select>
+        <label for="typeSelect">Type</label>
+      </div>
+
+      <div class="col form-floating px-1">
+        <select
+          class="form-select"
+          required
+          *ngIf="(character && character.weapon) || isnewForm"
+          ngModel="{{ isnewForm ? '' : character.weapon.name }}"
+          #weapon
+          name="weapon"
+          id="weaponSelect"
+          [ngClass]="{
+            'is-valid': formData.valid && !formData.errors?.weapon,
+            'is-invalid':
+              !formData.valid && !formData.errors?.weapon && formData.dirty
+          }"
+        >
+          <option [defaultSelected] value="">Select a Weapon</option>
+          <option value="Sword">Sword</option>
+          <option value="Gun">Gun</option>
+          <option value="Melee">Melee</option>
+          <option value="Brynhildr">Brynhildr</option>
+        </select>
+        <label for="weaponSelect">Weapon</label>
+      </div>
+      <div class="col">
+        <ng-multiselect-dropdown
+          *ngIf="skills$ | async as skills"
+          [ngClass]="{
+            'is-valid': formData.valid && !formData.errors?.type,
+            'is-invalid':
+              !formData.valid && !formData.errors?.type && formData.dirty
+          }"
+          required
+          id="skillsSelect"
+          [placeholder]="'Select a Skill'"
+          [settings]="dropdownSettings"
+          [data]="skills"
+          [(ngModel)]="selectedItems"
+          name="selectedItems"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="row m-3">
+      <input
+        [ngClass]="{
+          'btn-success': formData.valid,
+          'btn-danger': !formData.valid
+        }"
+        [disabled]="!formData.valid"
+        class="btn align-self-center"
+        type="submit"
+        value="{{ isnewForm ? 'Add' : 'Edit' }}"
+      />
+    </div>
+  </div>
+</form>

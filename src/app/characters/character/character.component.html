@@ -1,0 +1,31 @@
+<div
+  class="card"
+  style="width: 18rem; height: 28.6rem"
+  *ngIf="character$ | async as character"
+>
+  <img
+    class="card-img-top"
+    src="../../assets/download.svg"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ character.name }}</h5>
+    <p class="card-text">HitPoints: {{ character.hitPoints }}</p>
+    <p class="card-text">Strength: {{ character.strength }}</p>
+    <p class="card-text">Defence: {{ character.defence }}</p>
+    <p class="card-text">Intelligence: {{ character.intelligence }}</p>
+    <a
+      [routerLink]="[
+        '/characters',
+        'dashboard',
+        'character',
+        'edit',
+        character.id
+      ]"
+      class="btn btn-dark m-1"
+      >Edit</a
+    >
+    <a (click)="doDelete(character.id)" class="btn btn-danger m-1">Delete</a>
+
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<ng-container *ngIf="characters$ | async as characters">
+  <div class="d-flex flex-wrap">
+    <div
+      *ngFor="let character of characters"
+      class="card m-2"
+      style="width: 18rem; height: fit-content"
+    >
+      <img
+        class="card-img-top"
+        src="../../assets/{{ character.type }}.jpg"
+        alt="Card image cap"
+        height="200"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ character.name }}</h5>
+        <p class="card-text">HitPoints: {{ character.hitPoints }}</p>
+        <p class="card-text">Strength: {{ character.strength }}</p>
+        <p class="card-text">Defence: {{ character.defence }}</p>
+        <p class="card-text">Intelligence: {{ character.intelligence }}</p>
+        <a href="#" class="btn btn-dark m-1">Details</a>
+        <a href="#" class="btn btn-danger m-1">Attack</a>
+      </div>
+    </div>
+  </div>
+</ng-container>
