@@ -24,5 +24,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Technologies Used
 
-<img width="40" alt="1" src="https://user-images.githubusercontent.com/75543501/132356934-8796b1bb-def5-496a-b5b4-8a5ec23602a2.png"> <img width="40" alt="2" src="https://user-images.githubusercontent.com/75543501/132356943-f449805b-1762-4aa6-bf17-44bbcb5a993a.png"> <img width="40" alt="3" src="https://user-images.githubusercontent.com/75543501/132356948-76465e4a-35d3-4838-adb0-f5f8bbeee181.png">
-
+<img width="40" alt="1" src="https://user-images.githubusercontent.com/75543501/132356934-8796b1bb-def5-496a-b5b4-8a5ec23602a2.png"> <img width="40" alt="2" src="https://user-images.githubusercontent.com/75543501/132356943-f449805b-1762-4aa6-bf17-44bbcb5a993a.png"> <img width="40" alt="3" src="https://user-images.githubusercontent.com/75543501/132356948-76465e4a-35d3-4838-adb0-f5f8bbeee181.png"> <img width="40" alt="3" src="https://user-images.githubusercontent.com/75543501/132357639-49ff4df6-a8d6-41a9-8b37-d896cf48bd6a.jpg">
