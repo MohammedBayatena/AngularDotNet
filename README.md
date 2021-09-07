@@ -14,7 +14,7 @@ Run the sln file using any C# IDE. BackEnd Server runs at port http:5000 and Swa
 
 
 
-*FrontEnd:
+* FrontEnd:
 **Fully Authinticated With JWT Tokens in back end and Route Guards in Front End.
 ** Implemented Angular Entity Model 
 ** Implemented Form Validations and MultiSelect Lists
