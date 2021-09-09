@@ -124,6 +124,7 @@ namespace dotnet_rpg.Services.CharacterService
                 Character oldCharacter = await _context.Characters
                     .Include(c => c.User)
                     .Include(c => c.Skills)
+                    .Include(c => c.Weapon)
                     .FirstOrDefaultAsync(c => c.Id == id);
                 if (oldCharacter.User.Id == GetUserId())
                 {
@@ -135,7 +136,9 @@ namespace dotnet_rpg.Services.CharacterService
                     oldCharacter.Type = newCharacter.Type;
                     oldCharacter.Strength = newCharacter.Strength;
                     //oldCharacter.Skills.Clear(); //Enable if we want the characters to be able to add skills with request
-                    oldCharacter.Weapon = newCharacter.Weapon.AddWeaponDtoToWeapon();
+                    Weapon updatedWeapon = newCharacter.Weapon.AddWeaponDtoToWeapon();
+                    oldCharacter.Weapon.Name = updatedWeapon.Name;
+                    oldCharacter.Weapon.Damage = updatedWeapon.Damage;
                     //oldCharacter.Skills = newCharacter.Skills.Select(s => _mapper.Map<Skill>(s)).ToList();
                     ServiceResponse.Data = oldCharacter.MapCharactertoGetDto();
                     await _context.SaveChangesAsync();
