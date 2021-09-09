@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using dotnet_rpg.Data;
+﻿using dotnet_rpg.Data;
 using dotnet_rpg.Dtos.Character;
 using dotnet_rpg.Dtos.Weapon;
+using dotnet_rpg.Extensions;
 using dotnet_rpg.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -17,13 +17,11 @@ namespace dotnet_rpg.Services.WeaponService
     {
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IMapper _mapper;
 
-        public WeaponService(DataContext context, IHttpContextAccessor httpContextAccessor, IMapper mapper)
+        public WeaponService(DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;
-            _mapper = mapper;
         }
 
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -35,9 +33,9 @@ namespace dotnet_rpg.Services.WeaponService
             {
                 var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == newWeapon.CharacterId && c.User.Id == GetUserId());
                 if (character == null) { response.success = false; response.Message = "Character Not Found!"; return response; }
-                character.Weapon = _mapper.Map<Weapon>(newWeapon);
+                character.Weapon = newWeapon.AddWeaponDtoToWeapon();
                 await _context.SaveChangesAsync();
-                response.Data = _mapper.Map<GetCharacterDto>(character);
+                response.Data = character.MapCharactertoGetDto();
             }
             catch (Exception e)
             {
@@ -53,7 +51,7 @@ namespace dotnet_rpg.Services.WeaponService
             try
             {
                 var weapons = await _context.Weapons.ToListAsync();
-                response.Data = weapons.Select(w => _mapper.Map<GetWeaponDto>(w)).ToList();
+                response.Data = weapons.Select(w => w.MapWeapontoGetDto()).ToList();
                 response.Message = "All Weapons Read Successfully";
             }
             catch (Exception e)

@@ -11,20 +11,19 @@ namespace dotnet_rpg
     {
         public AutoMapperProfile()
         {
-            CreateMap<Character, GetCharacterDto>();
-            CreateMap<Character, GetCharacterWithUserDto>();
-            CreateMap<AddCharacterDto, Character>();
-            CreateMap<Character, AddCharacterDto>();
-            CreateMap<GetCharacterDto, AddCharacterDto>();
-            CreateMap<Weapon, AddWeaponDto>();
-            CreateMap<AddWeaponDto, Weapon>();
-            CreateMap<GetWeaponDto, Weapon>();
-            CreateMap<Weapon, GetWeaponDto>();
-            CreateMap<User, UserGetDto>();
-            CreateMap<Skill, GetSkillDto>();
-            CreateMap<AddSkillDto, GetSkillDto>();
-            CreateMap<AddSkillDto, Skill>();
-            CreateMap<Skill, GetSkillDto>();
+            //CreateMap<Character, GetCharacterDto>();
+            //CreateMap<Character, GetCharacterWithUserDto>();
+            //CreateMap<AddCharacterDto, Character>();
+            //CreateMap<Character, AddCharacterDto>();
+            //CreateMap<GetCharacterDto, AddCharacterDto>();
+            //CreateMap<Weapon, AddWeaponDto>();
+            //CreateMap<AddWeaponDto, Weapon>();
+            //CreateMap<Weapon, GetWeaponDto>();
+            //CreateMap<User, UserGetDto>();
+            //CreateMap<Skill, GetSkillDto>();
+            //CreateMap<AddSkillDto, GetSkillDto>();
+            //CreateMap<AddSkillDto, Skill>();
+            //CreateMap<Skill, GetSkillDto>();
         }
     }
 }

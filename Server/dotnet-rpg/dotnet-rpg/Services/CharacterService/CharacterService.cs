@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using dotnet_rpg.Data;
 using dotnet_rpg.Dtos.Character;
+using dotnet_rpg.Extensions;
 using dotnet_rpg.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +37,7 @@ namespace dotnet_rpg.Services.CharacterService
                 .Include(c => c.Skills)
                 .Include(c => c.User)
                 .ToListAsync();
-            ServiceResponse.Data = Characters.Select(c => _mapper.Map<GetCharacterWithUserDto>(c)).ToList();
+            ServiceResponse.Data = Characters.Select(c => c.MapCharacterToGetWithUserDto() ).ToList();
             ServiceResponse.Message = "All Characters Read Successfully";
             return ServiceResponse;
         }
@@ -49,7 +50,7 @@ namespace dotnet_rpg.Services.CharacterService
                 .Include(c => c.Weapon)
                 .Include(c => c.Skills)
                 .Where(c => c.User.Id == userId).ToListAsync();
-            response.Data = userCharacters.Select(c => _mapper.Map<GetCharacterDto>(c)).ToList();
+            response.Data = userCharacters.Select(c => c.MapCharactertoGetDto()).ToList();
             response.Message = $"All Characters of User {userId} Successfully";
             return response;
         }
@@ -64,7 +65,7 @@ namespace dotnet_rpg.Services.CharacterService
                     .FirstOrDefaultAsync(c => c.Id == id && c.User.Id == GetUserId());
             try
             {
-                ServiceResponse.Data = _mapper.Map<GetCharacterDto>(dbCharacter);
+                ServiceResponse.Data = dbCharacter.MapCharactertoGetDto();
                 ServiceResponse.Message = ServiceResponse.Data != null ? "Character have been Found! Success!" : "Character Was not Found!";
                 ServiceResponse.success = ServiceResponse.Data != null ? true : false;
             }
@@ -80,11 +81,11 @@ namespace dotnet_rpg.Services.CharacterService
         {
             var ServiceResponse = new ServiceResponse<GetCharacterWithUserDto>();
             //change to character from add character
-            Character newCharacter = _mapper.Map<Character>(character);
+            Character newCharacter =  character.MapAddDtoToCharacter();
             newCharacter.User = await _context.Users.FirstOrDefaultAsync(u => u.Id == GetUserId());
             _context.Characters.Add(newCharacter);
             await _context.SaveChangesAsync();
-            ServiceResponse.Data = _mapper.Map<GetCharacterWithUserDto>(newCharacter);
+            ServiceResponse.Data = newCharacter.MapCharacterToGetWithUserDto();
             ServiceResponse.Message = "Character was added Successfully!";
             return ServiceResponse;
         }
@@ -95,10 +96,16 @@ namespace dotnet_rpg.Services.CharacterService
             try
             {
                 Character characterToBeDelete = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id && c.User.Id == GetUserId());
+                if (characterToBeDelete == null)
+                {
+                    ServiceResponse.success = false;
+                    ServiceResponse.Message = "The Character you are trying to delete either doesn't exist or not enough permissions";
+                    return ServiceResponse;
+                }
+                ServiceResponse.Data = characterToBeDelete.MapCharactertoGetDto();
                 _context.Characters.Remove(characterToBeDelete);
                 await _context.SaveChangesAsync();
-                ServiceResponse.Data = _mapper.Map<GetCharacterDto>(characterToBeDelete);
-            }
+        }
             catch (Exception e)
             {
                 ServiceResponse.success = false;
@@ -107,7 +114,9 @@ namespace dotnet_rpg.Services.CharacterService
             return ServiceResponse;
         }
 
-        public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(int id, AddCharacterDto newCharacter)
+
+
+    public async Task<ServiceResponse<GetCharacterDto>> UpdateCharacter(int id, AddCharacterDto newCharacter)
         {
             var ServiceResponse = new ServiceResponse<GetCharacterDto>();
             try
@@ -118,16 +127,17 @@ namespace dotnet_rpg.Services.CharacterService
                     .FirstOrDefaultAsync(c => c.Id == id);
                 if (oldCharacter.User.Id == GetUserId())
                 {
-                    //oldcharacter = _mapper.map<character>(newcharacter); // This Does the same as below but using auto mapper
+                    //oldcharacter = _mapper.map<Character>(newcharacter); // This Does the same as below but using auto mapper
                     oldCharacter.Name = newCharacter.Name;
                     oldCharacter.HitPoints = newCharacter.HitPoints;
                     oldCharacter.Intelligence = newCharacter.Intelligence;
                     oldCharacter.Defence = newCharacter.Defence;
                     oldCharacter.Type = newCharacter.Type;
                     oldCharacter.Strength = newCharacter.Strength;
-                    //oldCharacter.Skills.Clear();
+                    //oldCharacter.Skills.Clear(); //Enable if we want the characters to be able to add skills with request
+                    oldCharacter.Weapon = newCharacter.Weapon.AddWeaponDtoToWeapon();
                     //oldCharacter.Skills = newCharacter.Skills.Select(s => _mapper.Map<Skill>(s)).ToList();
-                    ServiceResponse.Data = _mapper.Map<GetCharacterDto>(oldCharacter);
+                    ServiceResponse.Data = oldCharacter.MapCharactertoGetDto();
                     await _context.SaveChangesAsync();
                 }
                 else
@@ -189,7 +199,7 @@ namespace dotnet_rpg.Services.CharacterService
                     }
                     character.Skills.Add(skill);
                     await _context.SaveChangesAsync();
-                    response.Data = _mapper.Map<GetCharacterDto>(character);
+                    response.Data = character.MapCharactertoGetDto();
                 }
             }
             catch (Exception e)

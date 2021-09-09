@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\moham\\source\\repos\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj": {}
+    "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\moham\\source\\repos\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj": {
+    "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\moham\\source\\repos\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj",
+        "projectUniqueName": "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj",
         "projectName": "dotnet-rpg",
-        "projectPath": "C:\\Users\\moham\\source\\repos\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj",
+        "projectPath": "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj",
         "packagesPath": "C:\\Users\\moham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\moham\\source\\repos\\dotnet-rpg\\dotnet-rpg\\obj\\",
+        "outputPath": "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\moham\\AppData\\Roaming\\NuGet\\NuGet.Config",
