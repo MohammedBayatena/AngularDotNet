@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using dotnet_rpg.Dtos.Character;
-using dotnet_rpg.Dtos.Skill;
-using dotnet_rpg.Dtos.User;
-using dotnet_rpg.Dtos.Weapon;
-using dotnet_rpg.Models;
+using dotnet_rpg.Models.Character;
+using dotnet_rpg.Models.Skill;
+using dotnet_rpg.Models.User;
+using dotnet_rpg.Models.Weapon;
+using dotnet_rpg.Entities;
 
 namespace dotnet_rpg
 {

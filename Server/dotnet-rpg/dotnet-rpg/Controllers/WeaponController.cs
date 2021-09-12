@@ -1,7 +1,8 @@
-﻿using dotnet_rpg.Dtos.Character;
-using dotnet_rpg.Dtos.Weapon;
-using dotnet_rpg.Models;
-using dotnet_rpg.Services.WeaponService;
+﻿using dotnet_rpg.Contracts;
+using dotnet_rpg.Manager;
+using dotnet_rpg.Models.Weapon;
+using dotnet_rpg.Resource.Character;
+using dotnet_rpg.Resource.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,25 +16,25 @@ namespace dotnet_rpg.Controllers
     [Route("[controller]")]
     public class WeaponController : ControllerBase
     {
-        private readonly IWeaponService _weaponService;
+        private readonly IWeaponManager _weaponManager;
 
-        public WeaponController(IWeaponService weaponService)
+        public WeaponController(IWeaponManager weaponManager)
         {
-            _weaponService = weaponService;
+            _weaponManager = weaponManager;
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<GetWeaponDto>>>> GetAllWeapons()
+        public async Task<ActionResult<ServiceResponse<List<UserResource>>>> GetAllWeapons()
         {
-            return Ok(await _weaponService.GetAllWeapons());
+            return Ok(await _weaponManager.GetAllWeapons());
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> addWeapon(AddWeaponDto weapon)
+        public async Task<ActionResult<ServiceResponse<CharacterResource>>> addWeapon(WeaponModel weapon)
         {
             try
             {
-                return Ok(await _weaponService.AddWeapon(weapon));
+                return Ok(await _weaponManager.AddWeapon(weapon));
             }
             catch (Exception e)
             {

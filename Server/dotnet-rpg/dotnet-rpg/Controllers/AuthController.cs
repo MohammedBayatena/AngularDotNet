@@ -1,6 +1,7 @@
-﻿using dotnet_rpg.Data;
-using dotnet_rpg.Dtos.User;
-using dotnet_rpg.Models;
+﻿using dotnet_rpg.Contracts;
+using dotnet_rpg.Data;
+using dotnet_rpg.Entities;
+using dotnet_rpg.Models.User;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace dotnet_rpg.Controllers
         //@Desc  Allows User To Register a new account
         //@Request Username , Password
         [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDto request)
+        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterModel request)
         {
             var response = await _authRepository.Register(
                 new User { Username = request.Username }, request.Password
@@ -33,7 +34,7 @@ namespace dotnet_rpg.Controllers
         //@Desc  Allows User To Login
         //@Request Username , Password
         [HttpPost("Login")]
-        public async Task<ActionResult<ServiceResponse<AuthDispatchDto>>> Login(UserLoginDto request)
+        public async Task<ActionResult<ServiceResponse<AuthDispatchDto>>> Login(UserLoginModel request)
         {
             var response = await _authRepository.Login(request.Username, request.Password);
             return response.success ? Ok(response) : BadRequest(response);

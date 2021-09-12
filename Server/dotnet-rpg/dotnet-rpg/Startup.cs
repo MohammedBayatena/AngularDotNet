@@ -1,7 +1,6 @@
 using dotnet_rpg.Data;
-using dotnet_rpg.Services.CharacterService;
-using dotnet_rpg.Services.SkillService;
-using dotnet_rpg.Services.WeaponService;
+using dotnet_rpg.Manager;
+using dotnet_rpg.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +22,7 @@ namespace dotnet_rpg
         {
             Configuration = configuration;
         }
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -32,9 +32,15 @@ namespace dotnet_rpg
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<ICharacterService, CharacterService>();
-            services.AddScoped<IWeaponService, WeaponService>();
-            services.AddScoped<ISkillService, SkillService>();
+
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
+            services.AddScoped<IWeaponRepository, WeaponRepository>();
+
+            services.AddScoped<ICharacterManager, CharacterManager>();
+            services.AddScoped<ISkillManager, SkillManager>();
+            services.AddScoped<IWeaponManager, WeaponManager>();
+
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

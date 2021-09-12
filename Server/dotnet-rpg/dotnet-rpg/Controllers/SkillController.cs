@@ -1,6 +1,7 @@
-﻿using dotnet_rpg.Dtos.Skill;
-using dotnet_rpg.Models;
-using dotnet_rpg.Services.SkillService;
+﻿using dotnet_rpg.Contracts;
+using dotnet_rpg.Manager;
+using dotnet_rpg.Models.Skill;
+using dotnet_rpg.Resource.Skill;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -13,23 +14,23 @@ namespace dotnet_rpg.Controllers
     [Route("[controller]")]
     public class SkillController : ControllerBase
     {
-        private readonly ISkillService _skillService;
+        private readonly ISkillManager _skillManager;
 
-        public SkillController(ISkillService skillService)
+        public SkillController(ISkillManager skillManager)
         {
-            _skillService = skillService;
+            _skillManager = skillManager;
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<GetSkillDto>>>> GetAllSkills()
+        public async Task<ActionResult<ServiceResponse<List<SkillResource>>>> GetAllSkills()
         {
-            return Ok(await _skillService.GetAllSkills());
+            return Ok(await _skillManager.GetAll());
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<GetSkillDto>>> AddSkill(AddSkillDto newSkill)
+        public async Task<ActionResult<ServiceResponse<SkillResource>>> AddSkill(SkillModel newSkill)
         {
-            return Ok(await _skillService.AddSkill(newSkill));
+            return Ok(await _skillManager.AddSkill(newSkill));
         }
     }
 }
