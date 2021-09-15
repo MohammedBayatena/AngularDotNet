@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TbTzHiiXHq76jEL3CcS02/vaHNkhd67Wgg4xA6o26M8lq8GPO85K+f/E/LgTWaDxNujkYprllPbnwAPb2zuTUg==",
+  "dgSpecHash": "N1W+GiSZnUY3euoRBNpfHP683N2h7PFZJ0EWQHlRdcHjPooF6e7CkbHDUbT9a6T3X4EkmEt/KU1e9yN9q74Hgw==",
   "success": true,
   "projectFilePath": "C:\\Users\\moham\\Documents\\AppiaTech\\Github\\AngularDotNet\\Server\\dotnet-rpg\\dotnet-rpg\\dotnet-rpg.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.9\\microsoft.entityframeworkcore.design.5.0.9.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.9\\microsoft.entityframeworkcore.relational.5.0.9.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.9\\microsoft.entityframeworkcore.sqlserver.5.0.9.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.9\\microsoft.entityframeworkcore.tools.5.0.9.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
@@ -116,7 +117,9 @@
     "C:\\Users\\moham\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\moham\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\moham\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\moham\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\trackableentities.common.core\\3.1.1\\trackableentities.common.core.3.1.1.nupkg.sha512",
+    "C:\\Users\\moham\\.nuget\\packages\\trackableentities.ef.core\\5.0.1\\trackableentities.ef.core.5.0.1.nupkg.sha512"
   ],
   "logs": []
 }

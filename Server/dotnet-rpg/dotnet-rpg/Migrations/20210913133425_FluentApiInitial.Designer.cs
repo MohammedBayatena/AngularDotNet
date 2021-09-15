@@ -10,8 +10,8 @@ using dotnet_rpg.Data;
 namespace dotnet_rpg.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210821131024_hardcodedskills")]
-    partial class hardcodedskills
+    [Migration("20210913133425_FluentApiInitial")]
+    partial class FluentApiInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,22 +21,7 @@ namespace dotnet_rpg.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CharacterSkill", b =>
-                {
-                    b.Property<int>("CharactersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SkillsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CharactersId", "SkillsId");
-
-                    b.HasIndex("SkillsId");
-
-                    b.ToTable("CharacterSkill");
-                });
-
-            modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.Character", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +46,7 @@ namespace dotnet_rpg.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -71,7 +56,27 @@ namespace dotnet_rpg.Migrations
                     b.ToTable("Characters");
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.Skill", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.CharacterSkill", b =>
+                {
+                    b.Property<int>("CharactersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillsId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("CharactersId", "SkillsId");
+
+                    b.HasIndex("SkillsId");
+
+                    b.ToTable("CharacterSkill");
+                });
+
+            modelBuilder.Entity("dotnet_rpg.Entities.Skill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,7 +114,7 @@ namespace dotnet_rpg.Migrations
                         });
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.User", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,7 +135,7 @@ namespace dotnet_rpg.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.Weapon", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.Weapon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +149,9 @@ namespace dotnet_rpg.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -154,47 +161,60 @@ namespace dotnet_rpg.Migrations
                     b.ToTable("Weapons");
                 });
 
-            modelBuilder.Entity("CharacterSkill", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.Character", b =>
                 {
-                    b.HasOne("dotnet_rpg.Models.Character", null)
-                        .WithMany()
-                        .HasForeignKey("CharactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("dotnet_rpg.Models.Skill", null)
-                        .WithMany()
-                        .HasForeignKey("SkillsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
-                {
-                    b.HasOne("dotnet_rpg.Models.User", "User")
+                    b.HasOne("dotnet_rpg.Entities.User", "User")
                         .WithMany("Characters")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.Weapon", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.CharacterSkill", b =>
                 {
-                    b.HasOne("dotnet_rpg.Models.Character", "Character")
+                    b.HasOne("dotnet_rpg.Entities.Character", "Character")
+                        .WithMany("CharacterSkill")
+                        .HasForeignKey("CharactersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("dotnet_rpg.Entities.Skill", "Skill")
+                        .WithMany("CharacterSkill")
+                        .HasForeignKey("SkillsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("dotnet_rpg.Entities.Weapon", b =>
+                {
+                    b.HasOne("dotnet_rpg.Entities.Character", "Character")
                         .WithOne("Weapon")
-                        .HasForeignKey("dotnet_rpg.Models.Weapon", "CharacterId")
+                        .HasForeignKey("dotnet_rpg.Entities.Weapon", "CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Character");
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.Character", b =>
                 {
+                    b.Navigation("CharacterSkill");
+
                     b.Navigation("Weapon");
                 });
 
-            modelBuilder.Entity("dotnet_rpg.Models.User", b =>
+            modelBuilder.Entity("dotnet_rpg.Entities.Skill", b =>
+                {
+                    b.Navigation("CharacterSkill");
+                });
+
+            modelBuilder.Entity("dotnet_rpg.Entities.User", b =>
                 {
                     b.Navigation("Characters");
                 });

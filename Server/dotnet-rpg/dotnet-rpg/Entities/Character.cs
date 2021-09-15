@@ -12,8 +12,12 @@ namespace dotnet_rpg.Entities
         public int Defence { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
         public RpgClass Type { get; set; } = RpgClass.Knight;
+        public int UserId { get; set; }
         public User User { get; set; }
+
         public Weapon Weapon { get; set; }
+
+        public List<CharacterSkill> CharacterSkill { get; set; }
         public List<Skill> Skills { get; set; }
     }
 }

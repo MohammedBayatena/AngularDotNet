@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using TrackableEntities.Common.Core;
+using TrackableEntities.EF.Core;
 
 namespace dotnet_rpg.Repositories
 {
@@ -30,10 +32,15 @@ namespace dotnet_rpg.Repositories
 
         public async Task<Character> CreateAsync(Weapon newWeapon)
         {
-            var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == newWeapon.CharacterId && c.User.Id == GetUserId());
-            if (character == null) { return null; }
+            //var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == newWeapon.CharacterId && c.User.Id == GetUserId()); 
+            // In Trackable we can remove this and just do load related then flag as added then apply changes and save
+            await _context.LoadRelatedEntitiesAsync(newWeapon);
+            if (newWeapon == null || newWeapon.Character.User.Id != GetUserId() ) { return null; }
+            newWeapon.TrackingState = TrackingState.Added;
+            _context.ApplyChanges(newWeapon);
             await _context.SaveChangesAsync();
-            return character;
+            _context.AcceptChanges(newWeapon);
+            return newWeapon.Character;
         }
 
         public async Task<List<Weapon>> GetAllAsync()

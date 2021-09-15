@@ -40,8 +40,10 @@
           "Microsoft.EntityFrameworkCore": "5.0.9",
           "Microsoft.EntityFrameworkCore.Design": "5.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.9",
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.9",
           "Swashbuckle.AspNetCore.Filters": "7.0.2",
           "Swashbuckle.AspNetCore": "5.6.3",
+          "TrackableEntities.EF.Core": "5.0.1",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -568,6 +570,11 @@
         },
         "compile": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/5.0.9": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "5.0.9"
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
@@ -1410,6 +1417,32 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "TrackableEntities.Common.Core/3.1.1": {
+        "runtime": {
+          "lib/netstandard2.0/TrackableEntities.Common.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/TrackableEntities.Common.Core.dll": {}
+        }
+      },
+      "TrackableEntities.EF.Core/5.0.1": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "5.0.9",
+          "TrackableEntities.Common.Core": "3.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/TrackableEntities.EF.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/TrackableEntities.EF.Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -3225,6 +3258,13 @@
       "path": "microsoft.entityframeworkcore.sqlserver/5.0.9",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.9.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Tools/5.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BdNfn6IzyD6r6XpjnOn7HuWKryVzT6TnDIH8MZLD3d/wLG24V0BYB1Dyr6wnAqgGXXCZxJf77YES5nobge56aA==",
+      "path": "microsoft.entityframeworkcore.tools/5.0.9",
+      "hashPath": "microsoft.entityframeworkcore.tools.5.0.9.nupkg.sha512"
+    },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",
       "serviceable": true,
@@ -3896,6 +3936,20 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "TrackableEntities.Common.Core/3.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1Pqp8XzP43B/lRtp2SjIebWZsN81QkA3OQ6259+GvZ6YuIJY1DyK8idmc7pQTIJ9DccxOf1brWKOU9s0OMVBuw==",
+      "path": "trackableentities.common.core/3.1.1",
+      "hashPath": "trackableentities.common.core.3.1.1.nupkg.sha512"
+    },
+    "TrackableEntities.EF.Core/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ku2G3Zy3k9JIp/iowoOmlEqz8R1IFPhh6eNMnb1UlVwgwgcW+thLNJFr/rSM1d2MxR9ZyExzld79Ms/enap/1A==",
+      "path": "trackableentities.ef.core/5.0.1",
+      "hashPath": "trackableentities.ef.core.5.0.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",

@@ -132,3 +132,5 @@ C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet
 C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet-rpg\obj\Debug\net5.0\ref\dotnet-rpg.dll
 C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet-rpg\obj\Debug\net5.0\dotnet-rpg.pdb
 C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet-rpg\obj\Debug\net5.0\dotnet-rpg.genruntimeconfig.cache
+C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet-rpg\bin\Debug\net5.0\TrackableEntities.Common.Core.dll
+C:\Users\moham\Documents\AppiaTech\Github\AngularDotNet\Server\dotnet-rpg\dotnet-rpg\bin\Debug\net5.0\TrackableEntities.EF.Core.dll
