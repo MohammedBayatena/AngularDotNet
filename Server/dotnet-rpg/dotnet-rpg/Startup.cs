@@ -1,3 +1,5 @@
+using dotnet_rpg.AsyncDataServices;
+using dotnet_rpg.AsyncDataServices.EventProcessing;
 using dotnet_rpg.Data;
 using dotnet_rpg.Manager;
 using dotnet_rpg.Repositories;
@@ -32,6 +34,13 @@ namespace dotnet_rpg
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
+
+
+            services.AddSingleton<IMessageBusClient,MessageBusClient>();
+            services.AddHostedService<MessageBusSubscriber>();
+            services.AddSingleton<IEventProcessor, EventProcessor>();
+
+
 
             services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<ISkillRepository, SkillRepository>();
