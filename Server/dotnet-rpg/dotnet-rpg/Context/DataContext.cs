@@ -17,13 +17,17 @@ namespace dotnet_rpg.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //External configuration
             modelBuilder.ApplyConfiguration(new WeaponConfiguration());
 
+            //One To Many Relationship (User-Character)
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Characters)
                 .WithOne(c => c.User)
                 .HasForeignKey(c => c.UserId);
 
+            //Many To Many Relationship (Character-Skill)
             modelBuilder.Entity<Character>()
             .HasMany(c => c.Skills)
             .WithMany(c => c.Characters)
