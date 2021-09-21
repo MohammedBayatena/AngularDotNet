@@ -1,3 +1,4 @@
+import { RegisterService } from './register/register.service';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthReducer } from './reducers/index';
 import { StoreModule } from '@ngrx/store';
@@ -37,7 +38,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [LoginService, AuthService, AuthGuard],
+      providers: [LoginService, AuthService, AuthGuard , RegisterService],
     };
   }
 }
