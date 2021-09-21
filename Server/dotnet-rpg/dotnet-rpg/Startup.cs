@@ -36,10 +36,9 @@ namespace dotnet_rpg
             services.AddAutoMapper(typeof(Startup));
 
 
-            services.AddSingleton<IMessageBusClient,MessageBusClient>();
-            services.AddHostedService<MessageBusSubscriber>();
-            services.AddSingleton<IEventProcessor, EventProcessor>();
-
+            //services.AddSingleton<IMessageBusClient,MessageBusClient>();
+            //services.AddHostedService<MessageBusSubscriber>();
+            //services.AddSingleton<IEventProcessor, EventProcessor>();
 
 
             services.AddScoped<ICharacterRepository, CharacterRepository>();

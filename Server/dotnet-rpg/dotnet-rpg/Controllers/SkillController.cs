@@ -17,12 +17,13 @@ namespace dotnet_rpg.Controllers
     public class SkillController : ControllerBase
     {
         private readonly ISkillManager _skillManager;
-        private readonly IMessageBusClient _messageBusClient;
+        //private readonly IMessageBusClient _messageBusClient;
+        //public SkillController(ISkillManager skillManager, IMessageBusClient messageBusClient)
 
-        public SkillController(ISkillManager skillManager, IMessageBusClient messageBusClient)
+        public SkillController(ISkillManager skillManager)
         {
             _skillManager = skillManager;
-            _messageBusClient = messageBusClient;
+            //_messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -41,7 +42,7 @@ namespace dotnet_rpg.Controllers
                 skillpuplished.Name = addedskill.Data.Name;
                 skillpuplished.Id = addedskill.Data.Id;
                 skillpuplished.Event = "Skill_Published";
-                _messageBusClient.PublishNewSkill(skillpuplished);
+                //_messageBusClient.PublishNewSkill(skillpuplished);
             }
             catch (System.Exception)
             {
